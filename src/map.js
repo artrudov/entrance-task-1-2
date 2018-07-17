@@ -14,9 +14,9 @@ export function initMap(ymaps, containerId) {
     gridSize: 64,
     clusterIconLayout: 'default#pieChart',
     clusterDisableClickZoom: false,
-    geoObjectOpenBalloonOnClick: false,
+    geoObjectOpenBalloonOnClick: true,
     geoObjectHideIconOnBalloonOpen: false,
-    geoObjectBalloonContentLayout: getDetailsContentLayout(ymaps)
+    // geoObjectBalloonContentLayout: getDetailsContentLayout(ymaps)
   });
 
   myMap.geoObjects.add(objectManager);
@@ -25,14 +25,12 @@ export function initMap(ymaps, containerId) {
     objectManager.add(data);
   });
 
-  console.log( loadList().then(data => {
-    objectManager.add(data);
-  }))
-
   // details
   objectManager.objects.events.add('click', event => {
     const objectId = event.get('objectId');
     const obj = objectManager.objects.getById(objectId);
+
+    console.log(objectId, obj)
 
     objectManager.objects.balloon.open(objectId);
 
@@ -48,7 +46,7 @@ export function initMap(ymaps, containerId) {
   const listBoxControl = createFilterControl(ymaps);
   myMap.controls.add(listBoxControl);
 
-  var filterMonitor = new ymaps.Monitor(listBoxControl.state);
+  const filterMonitor = new ymaps.Monitor(listBoxControl.state);
   filterMonitor.add('filters', filters => {
     objectManager.setFilter(
       obj => filters[obj.isActive ? 'active' : 'defective']
