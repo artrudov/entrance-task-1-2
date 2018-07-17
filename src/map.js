@@ -20,10 +20,15 @@ export function initMap(ymaps, containerId) {
   });
 
   objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
+  myMap.geoObjects.add(objectManager);
 
   loadList().then(data => {
     objectManager.add(data);
   });
+
+  console.log( loadList().then(data => {
+    objectManager.add(data);
+  }))
 
   // details
   objectManager.objects.events.add('click', event => {
