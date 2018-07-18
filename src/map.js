@@ -1,6 +1,6 @@
-import { loadList, loadDetails } from './api';
-import { getDetailsContentLayout } from './details';
-import { createFilterControl } from './filter';
+import {loadList, loadDetails} from './api'
+import {getDetailsContentLayout} from './details'
+import {createFilterControl} from './filter'
 
 export function initMap(ymaps, containerId) {
   const myMap = new ymaps.Map(containerId, {
@@ -14,7 +14,7 @@ export function initMap(ymaps, containerId) {
     gridSize: 64,
     clusterIconLayout: 'default#pieChart',
     clusterDisableClickZoom: false,
-    geoObjectOpenBalloonOnClick: true,
+    geoObjectOpenBalloonOnClick: false,
     geoObjectHideIconOnBalloonOpen: false,
     geoObjectBalloonContentLayout: getDetailsContentLayout(ymaps)
   });
@@ -22,7 +22,7 @@ export function initMap(ymaps, containerId) {
   myMap.geoObjects.add(objectManager);
 
   loadList().then(data => {
-    objectManager.add(data);
+    objectManager.add(data)
   });
 
   // details
@@ -30,13 +30,13 @@ export function initMap(ymaps, containerId) {
     const objectId = event.get('objectId');
     const obj = objectManager.objects.getById(objectId);
 
-    objectManager.objects.balloon.open(objectId);
-
     if (!obj.properties.details) {
-      loadDetails(objectId).then(data => {
-        obj.properties.details = data;
-        objectManager.objects.balloon.setData(obj);
-      });
+      loadDetails(objectId)
+        .then(data => {
+          obj.properties.details = data;
+          objectManager.objects.balloon.setData(obj);
+        })
+        .then(() => objectManager.objects.balloon.open(objectId));
     }
   });
 
