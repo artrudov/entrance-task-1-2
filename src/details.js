@@ -37,8 +37,8 @@ export function getDetailsContentLayout(ymaps) {
 
           this.connectionChart = createChart(
             container,
-            details.isActive.chart,
-            details.isActive.isActive
+            details.details.chart,
+            details.details.isActive
           );
         }
       },
