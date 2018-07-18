@@ -16,7 +16,7 @@ export function initMap(ymaps, containerId) {
     clusterDisableClickZoom: false,
     geoObjectOpenBalloonOnClick: true,
     geoObjectHideIconOnBalloonOpen: false,
-    // geoObjectBalloonContentLayout: getDetailsContentLayout(ymaps)
+    geoObjectBalloonContentLayout: getDetailsContentLayout(ymaps)
   });
 
   myMap.geoObjects.add(objectManager);
@@ -29,8 +29,6 @@ export function initMap(ymaps, containerId) {
   objectManager.objects.events.add('click', event => {
     const objectId = event.get('objectId');
     const obj = objectManager.objects.getById(objectId);
-
-    console.log(objectId, obj)
 
     objectManager.objects.balloon.open(objectId);
 
