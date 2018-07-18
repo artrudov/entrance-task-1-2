@@ -21,7 +21,7 @@ export function createChart(container, data, isActive) {
   const borderColor = getColor(isActive);
   const backgroundColor = getColor(isActive, 0.5);
 
-  const chart = new Chart(ctx, {
+  return new Chart(ctx, {
     type: 'line',
     data: {
       labels: data.map(getLabel),
@@ -29,21 +29,19 @@ export function createChart(container, data, isActive) {
         {
           data: data,
           borderWidth: 1,
-            borderColor: borderColor,
-              backgroundColor: backgroundColor
+          borderColor: borderColor,
+          backgroundColor: backgroundColor
         }
       ]
     },
     options: {
-        legend: { 
-            display: false
-        },
-        scales: {
-            xAxes: [{ ticks: { display: false } }],
-            yAxes: [{ ticks: { beginAtZero: true, max: 0 } }]
-        }
+      legend: {
+        display: false
+      },
+      scales: {
+        xAxes: [{ ticks: { display: false } }],
+        yAxes: [{ ticks: { beginAtZero: true, max: Math.max(...data) + 1 } }]
+      }
     }
   });
-
-  return chart;
 }

@@ -33,6 +33,8 @@ export function initMap(ymaps, containerId) {
     if (!obj.properties.details) {
       loadDetails(objectId)
         .then(data => {
+          data.lat = data.lat.toFixed(4);
+          data.long = data.long.toFixed(4);
           obj.properties.details = data;
           objectManager.objects.balloon.setData(obj);
         })
