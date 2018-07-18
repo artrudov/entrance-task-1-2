@@ -1,4 +1,4 @@
-import { Chart } from 'chart.js';
+import {Chart} from 'chart.js';
 
 function getColor(isActive, alpha = 1) {
   return isActive
@@ -39,8 +39,8 @@ export function createChart(container, data, isActive) {
         display: false
       },
       scales: {
-        xAxes: [{ ticks: { display: false } }],
-        yAxes: [{ ticks: { beginAtZero: true, max: Math.max(...data) + 1 } }]
+        xAxes: [{ticks: {display: false}}],
+        yAxes: [{ticks: {beginAtZero: true, max: Math.max(...data) + 1}}]
       }
     }
   });
