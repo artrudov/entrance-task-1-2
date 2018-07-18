@@ -37,6 +37,8 @@ export function initMap(ymaps, containerId) {
           objectManager.objects.balloon.setData(obj);
         })
         .then(() => objectManager.objects.balloon.open(objectId));
+    } else {
+      objectManager.objects.balloon.open(objectId)
     }
   });
 
