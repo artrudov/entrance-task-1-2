@@ -30,7 +30,7 @@ exports.generateData = function () {
   return data;
 };
 
-exports.generateDetails = function ({isActive}) {
+exports.generateDetails = isActive => {
   const connections = isActive ? Math.floor(Math.random() * 7) + 4 : 0;
 
   return {
