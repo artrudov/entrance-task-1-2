@@ -12,7 +12,16 @@ function getLabel(el, i, data) {
   x.setMinutes(0);
   x.setSeconds(0);
   x.setMilliseconds(0);
-  return x.toString();
+  return x.toLocaleString('ru', {
+    timeZone: 'Europe/Moscow',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    weekday: 'long',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric'
+  });
 }
 
 export function createChart(container, data, isActive) {
